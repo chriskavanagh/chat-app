@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import InfoBar from "./InfoBar";
 import queryString from "query-string";
 import io from "socket.io-client";
 
@@ -23,6 +24,10 @@ const Containerdiv = styled.div`
   border-radius: 8px;
   height: 60%;
   width: 35%;
+
+  h1 {
+    margin-top: 10px;
+  }
 
   @media (min-width: 320px) and (max-width: 480px) {
     width: 100%;
@@ -51,7 +56,9 @@ const Chat = ({ location }) => {
     setName(name);
     setRoom(room);
 
-    socket.emit("join", { name, room }, () => {});
+    socket.emit("join", { name, room }, () => {
+      console.log(name, room);
+    });
 
     return () => {
       socket.emit("disconnect");
@@ -73,17 +80,19 @@ const Chat = ({ location }) => {
         setMessage("");
       });
     }
+    console.log(message, messages);
   };
 
   return (
     <Outerdiv>
       <Containerdiv>
         <h1>Chat</h1>
-        <input
+        <InfoBar room={room} />
+        {/* <input
           value={message}
           onChange={e => setMessage(e.target.value)}
           onKeyPress={e => (e.key === "Enter" ? sendMessage(e) : null)}
-        />
+        /> */}
       </Containerdiv>
     </Outerdiv>
   );
