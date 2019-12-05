@@ -2,6 +2,73 @@ import React from "react";
 import styled from "styled-components";
 import ReactEmoji from "react-emoji";
 
+const MsgContainer = styled.div`
+  display: flex;
+  padding: 0 5%;
+  margin-top: 3px;
+
+  .justifyStart {
+    justify-content: flex-start;
+  }
+
+  .justifyEnd {
+    justify-content: flex-end;
+  }
+`;
+
+const MsgBox = styled.div`
+  background: #f3f3f3;
+  border-radius: 20px;
+  padding: 5px 20px;
+  color: white;
+  display: inline-block;
+  max-width: 80%;
+
+  .backgroundBlue {
+    background: #2979ff;
+  }
+
+  .backgroundLight {
+    background: #f3f3f3;
+  }
+`;
+
+const MsgText = styled.p`
+  width: 100%;
+  letter-spacing: 0;
+  float: left;
+  font-size: 1.1em;
+  word-wrap: break-word;
+
+  img {
+    vertical-align: middle;
+  }
+
+  .colorWhite {
+    color: white;
+  }
+
+  .colorDark {
+    color: #353535;
+  }
+`;
+
+const SentText = styled.p`
+  display: flex;
+  align-items: center;
+  font-family: Helvetica;
+  color: #828282;
+  letter-spacing: 0.3px;
+
+  .pl-10 {
+    padding-left: 10px;
+  }
+
+  .pr-10 {
+    padding-right: 10px;
+  }
+`;
+
 const Message = ({ message: { text, user }, name }) => {
   let isSentByCurrentUser = false;
 

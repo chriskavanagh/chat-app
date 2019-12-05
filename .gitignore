@@ -1,1 +1,5 @@
 .netlify
+.netlify/state.json
+/coverage
+/node_modules
+.env
