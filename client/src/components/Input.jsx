@@ -1,20 +1,50 @@
 import React from "react";
 import styled from "styled-components";
 
+const Form = styled.form`
+  display: flex;
+  border-top: 2px solid #d3d3d3;
+`;
+
+const MsgInput = styled.input`
+  border: none;
+  border-radius: 0;
+  padding: 5%;
+  width: 80%;
+  font-size: 1.2em;
+
+  :focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+  }
+`;
+
+const Button = styled.button`
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #2979ff;
+  padding: 20px;
+  display: inline-block;
+  border: none;
+  width: 20%;
+`;
+
 const Input = ({ setMessage, sendMessage, message }) => (
-  <form className="form">
-    <input
+  <Form className="form">
+    <MsgInput
       className="input"
       type="text"
       placeholder="Type a message..."
       value={message}
       onChange={({ target: { value } }) => setMessage(value)}
-      onKeyPress={event => (event.key === "Enter" ? sendMessage(event) : null)}
+      onKeyPress={e => (e.key === "Enter" ? sendMessage(e) : null)}
     />
-    <button className="sendButton" onClick={e => sendMessage(e)}>
+    <Button className="sendButton" onClick={e => sendMessage(e)}>
       Send
-    </button>
-  </form>
+    </Button>
+  </Form>
 );
 
 export default Input;

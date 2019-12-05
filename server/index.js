@@ -24,7 +24,7 @@ io.on("connect", socket => {
 
     socket.broadcast
       .to(user.room)
-      .emit("message", { user: "admin", text: `$user.name} has joined` });
+      .emit("message", { user: "admin", text: `${user.name} has joined` });
 
     socket.join(user.room);
 
@@ -38,6 +38,13 @@ io.on("connect", socket => {
   });
 
   socket.on("disconnect", () => {
+    const user = removeUser(socket.id);
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: "admin",
+        text: `${user.name} has left.`
+      });
+    }
     console.log("User Has Left Room");
   });
 });
